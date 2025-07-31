@@ -1,16 +1,30 @@
 {
   "version": 1,
   "routes": [
+    // 1) Let Pages try to serve any real file under /static, /favicon.ico, etc.
     { "handle": "filesystem" },
 
-    // exact /adminportal
+    // 2) Rewrite /adminportal/static/... → /static/...
+    {
+      "src": "^/adminportal/static/(.*)$",
+      "dest": "/static/$1"
+    },
+
+    // 3) (Optional) If you have other assets at the root—like manifest.json, robots.txt, etc.—
+    //    you can add more rules here. For example:
+    {
+      "src": "^/adminportal/(manifest\\.json|favicon\\.ico)$",
+      "dest": "/$1"
+    },
+
+    // 4) Serve index.html for the exact /adminportal (no slash)…
     {
       "src": "^/adminportal$",
       "dest": "/index.html"
     },
-    // /adminportal/... everything under
+    // 5) …and for anything else under /adminportal/
     {
-      "src": "^/adminportal/.*",
+      "src": "^/adminportal/.*$",
       "dest": "/index.html"
     }
   ]
