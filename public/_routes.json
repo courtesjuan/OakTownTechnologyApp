@@ -1,18 +1,23 @@
 {
   "version": 1,
   "routes": [
+    // 1) Serve any real files directly (CSS, JS, images, etc.)
     { "handle": "filesystem" },
 
+    // 2) Static assets under /adminportal → strip the prefix
     {
       "src": "^/adminportal/static/(.*)$",
       "dest": "/static/$1"
     },
     {
-      "src": "^/adminportal/(favicon\\.ico|manifest\\.json)$",
+      "src": "^/adminportal/(.+\\.(js|css|png|svg|ico|json|txt|map))$",
       "dest": "/$1"
     },
 
-    { "src": "^/adminportal$",    "dest": "/index.html" },
-    { "src": "^/adminportal/(.*)$","dest": "/index.html" }
+    // 3) Everything else under /adminportal (including /adminportal itself) → index.html
+    {
+      "src": "^/adminportal(/.*)?$",
+      "dest": "/index.html"
+    }
   ]
 }
