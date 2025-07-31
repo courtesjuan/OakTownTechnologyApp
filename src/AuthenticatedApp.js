@@ -1,6 +1,6 @@
 // src/AuthenticatedApp.js
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import ResponsiveNavBar from './components/ResponsiveNavBar'; // The new nav
 import Dashboard from './components/Dashboard';
@@ -12,7 +12,8 @@ import InvoiceWizard from './components/InvoiceWizard';
 
 function AuthenticatedApp() {
   return (
-    <>
+    // Wrap everything in BrowserRouter with the /adminportal basename
+    <BrowserRouter basename="/adminportal">
       {/* Our fancy new nav */}
       <ResponsiveNavBar />
 
@@ -29,7 +30,7 @@ function AuthenticatedApp() {
           <Route path="/invoices/edit/:id" element={<InvoiceWizard />} />
         </Routes>
       </Box>
-    </>
+    </BrowserRouter>
   );
 }
 
