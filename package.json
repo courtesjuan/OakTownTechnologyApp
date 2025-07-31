@@ -20,7 +20,6 @@
     "install": "^0.13.0",
     "jspdf": "^3.0.1",
     "jspdf-autotable": "^5.0.2",
-    "jspdf-customfonts": "^0.0.4-rc.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^7.5.0",
